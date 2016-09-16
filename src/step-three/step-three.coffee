@@ -17,7 +17,14 @@ AdTargetForm = require './ad-target-form.js'
 
 Submit = require('../functions/submit.js').StepThree
 
+GetData = require '../functions/get-data.js'
+
 StepThree = React.createClass
+
+	getInitialState: ->
+		{
+			data: false
+		}
 
 	handleBack: ->
 		@props.changeStep(2)
@@ -27,8 +34,16 @@ StepThree = React.createClass
 		Submit(formValues).then (rsp) ->
 			_this.props.updateData(rsp, 3)
 			_this.props.changeStep(step)
+
+	componentDidMount: ->
+		_this = @
+		GetData(@props.old_data).then (rsp) ->
+			console.log rsp
+			_this.setState {data: rsp}, ->
+				_this.forceUpdate()
 	
 	render: ->
+		console.log 'shit is rendering'
 		div
 			className: 'container'
 			id: 'step-three-container'
@@ -48,7 +63,7 @@ StepThree = React.createClass
 						"Please set your CPM and Max Impressions for each ad."
 				div
 					className: 'col-sm-2'
-			React.createElement AdTargetForm, {changeStep: @submitData, data: @props.data}
+			React.createElement AdTargetForm, {changeStep: @submitData, data: @props.data, old_data: @state.data}
 
 
 

@@ -26,6 +26,9 @@ Summary = React.createClass({
       data: false
     };
   },
+  handleDone: function() {
+    return this.props.changeStep(0);
+  },
   handleBack: function() {
     return this.props.changeStep(4);
   },
@@ -58,7 +61,10 @@ Summary = React.createClass({
       className: 'col-sm-2'
     })), React.createElement(SummaryData, {
       data: this.state.data
-    }));
+    }), a({
+      className: 'btn btn-primary',
+      onClick: this.handleDone
+    }, 'Done'));
   }
 });
 

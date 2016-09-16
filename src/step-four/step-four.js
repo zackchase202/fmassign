@@ -9,7 +9,7 @@ StepFour of Sample Workflow
 	 	CVC
 	 	Name
  */
-var ErrorAlert, Input, PaymentForm, React, ReactDOM, StepFour, Submit, a, div, form, getValues, h3, input, label, p, ref;
+var ErrorAlert, Input, PaymentForm, React, ReactDOM, StepFour, Submit, a, div, form, getData, getValues, h3, input, label, p, ref;
 
 React = require('react');
 
@@ -18,6 +18,8 @@ ReactDOM = require('react-dom');
 ref = React.DOM, div = ref.div, h3 = ref.h3, p = ref.p, form = ref.form, input = ref.input, label = ref.label, a = ref.a;
 
 Input = require('../global/input.js');
+
+getData = require('../functions/get-data.js');
 
 getValues = require('../functions/form-values.js');
 
@@ -107,7 +109,8 @@ StepFour = React.createClass({
     }, h3({}, "Billing Information"), p({}, "Please enter your billing info below")), div({
       className: 'col-sm-2'
     })), React.createElement(PaymentForm, {
-      error: this.state.error
+      error: this.state.error,
+      data: this.props.data
     }), a({
       className: 'btn btn-primary',
       onClick: this.handleSubmit

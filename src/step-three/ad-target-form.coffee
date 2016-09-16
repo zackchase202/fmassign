@@ -18,7 +18,13 @@ ErrorAlert = React.createClass
 
 AdTargetInputs = React.createClass
 
+	componentDidUpdate: ->
+		if @props.data
+			$('#cpm' + String @props.count).val(@props.data['cpm' + String @props.count])
+			$('#max-impressions' + @props.count).val(@props.data['maximpressions' + @props.count])
+
 	render: ->
+		console.log 'more shit render'
 		div
 			className: 'ad-target-input-container'
 			div
@@ -36,7 +42,6 @@ AdTargetInputs = React.createClass
 AdTargetComponent = React.createClass
 
 	render: ->
-		console.log @props
 		div
 			className: 'row ad-target-component'
 			div
@@ -46,21 +51,21 @@ AdTargetComponent = React.createClass
 					src: @props.image
 			div
 				className: 'col-sm-10'
-				React.createElement AdTargetInputs, {count: @props.count, error: @props.error}
+				React.createElement AdTargetInputs, {data: @props.data, count: @props.count, error: @props.error}
 
 AdTargetForm = React.createClass
 	
 	getInitialState: ->
 		{
-			image_amount: 5,
-			error: false
+			error: false,
+			data: false
 		}
 
 	handleSubmit: ->
 		target_form_keys = ['cpm', 'max-impressions']
 		formValues = {}
 		i = 1
-		while i <= @state.image_amount
+		while i <= @props.data.image_amount
 			targetValues = {}
 			targetValues['cpm' + String i] = $('#cpm' + String i).val()
 			targetValues['maximpressions' + String i] = $('#max-impressions' + String i).val()
@@ -76,40 +81,39 @@ AdTargetForm = React.createClass
 		@props.changeStep(4, formValues)
 
 	render: ->
-		console.log @props.data.images.length
 		div
 			className: 'container'
 			switch @props.data.image_amount
 				when 1
 					div
 						className: 'empty'
-						React.createElement AdTargetComponent, {error: @state.error, count: 1, image: @props.data.images[0]}
+						React.createElement AdTargetComponent, {data: @props.old_data.image1, error: @state.error, count: 1, image: @props.data.images[0]}
 				when 2
 					div
 						className: 'empty'
-						React.createElement AdTargetComponent, {error: @state.error, count: 1, image: @props.data.images[0]}
-						React.createElement AdTargetComponent, {error: @state.error, count: 2, image: @props.data.images[1]}
+						React.createElement AdTargetComponent, {data: @props.old_data.image1, error: @state.error, count: 1, image: @props.data.images[0]}
+						React.createElement AdTargetComponent, {data: @props.old_data.image2, error: @state.error, count: 2, image: @props.data.images[1]}
 				when 3
 					div
 						className: 'empty'
-						React.createElement AdTargetComponent, {error: @state.error, count: 1, image: @props.data.images[0]}
-						React.createElement AdTargetComponent, {error: @state.error, count: 2, image: @props.data.images[1]}
-						React.createElement AdTargetComponent, {error: @state.error, count: 3, image: @props.data.images[2]}
+						React.createElement AdTargetComponent, {data: @props.old_data.image1, error: @state.error, count: 1, image: @props.data.images[0]}
+						React.createElement AdTargetComponent, {data: @props.old_data.image2, error: @state.error, count: 2, image: @props.data.images[1]}
+						React.createElement AdTargetComponent, {data: @props.old_data.image3, error: @state.error, count: 3, image: @props.data.images[2]}
 				when 4
 					div
 						className: 'empty'
-						React.createElement AdTargetComponent, {error: @state.error, count: 1, image: @props.data.images[0]}
-						React.createElement AdTargetComponent, {error: @state.error, count: 2, image: @props.data.images[1]}
-						React.createElement AdTargetComponent, {error: @state.error, count: 3, image: @props.data.images[2]}
-						React.createElement AdTargetComponent, {error: @state.error, count: 4, image: @props.data.images[3]}
+						React.createElement AdTargetComponent, {data: @props.old_data.image1, error: @state.error, count: 1, image: @props.data.images[0]}
+						React.createElement AdTargetComponent, {data: @props.old_data.image2, error: @state.error, count: 2, image: @props.data.images[1]}
+						React.createElement AdTargetComponent, {data: @props.old_data.image3, error: @state.error, count: 3, image: @props.data.images[2]}
+						React.createElement AdTargetComponent, {data: @props.old_data.image4, error: @state.error, count: 4, image: @props.data.images[3]}
 				when 5
 					div
 						className: 'empty'
-						React.createElement AdTargetComponent, {error: @state.error, count: 1, image: @props.data.images[0]}
-						React.createElement AdTargetComponent, {error: @state.error, count: 2, image: @props.data.images[1]}
-						React.createElement AdTargetComponent, {error: @state.error, count: 3, image: @props.data.images[2]}
-						React.createElement AdTargetComponent, {error: @state.error, count: 4, image: @props.data.images[3]}
-						React.createElement AdTargetComponent, {error: @state.error, count: 5, image: @props.data.images[4]}
+						React.createElement AdTargetComponent, {data: @props.old_data.image1, error: @state.error, count: 1, image: @props.data.images[0]}
+						React.createElement AdTargetComponent, {data: @props.old_data.image2, error: @state.error, count: 2, image: @props.data.images[1]}
+						React.createElement AdTargetComponent, {data: @props.old_data.image3, error: @state.error, count: 3, image: @props.data.images[2]}
+						React.createElement AdTargetComponent, {data: @props.old_data.image4, error: @state.error, count: 4, image: @props.data.images[3]}
+						React.createElement AdTargetComponent, {data: @props.old_data.image5, error: @state.error, count: 5, image: @props.data.images[4]}
 			a
 				className: 'btn btn-primary'
 				onClick: this.handleSubmit

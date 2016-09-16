@@ -56,6 +56,13 @@ ImageUpload = React.createClass({
       error: false
     };
   },
+  componentDidMount: function() {
+    if (this.props.data) {
+      return this.setState({
+        images: this.props.data.images
+      });
+    }
+  },
   deleteImage: function(img) {
     var _this;
     _this = this;

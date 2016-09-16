@@ -15,12 +15,14 @@ User Enters Information, Submits form to server, Moves to StepTwo
 
 React = require 'react'
 ReactDOM = require 'react-dom'
+$ = require 'jquery'
 {div,h3,p,form,input,label,a} = React.DOM
 
 Input = require '../global/input.js'
 CurrencyInput = require '../global/currency-input.js'
 
 getValues = require '../functions/form-values.js'
+getData = require '../functions/get-data.js'
 Submit = require('../functions/submit.js').StepOne
 
 ErrorAlert = React.createClass
@@ -105,6 +107,22 @@ StepOne = React.createClass
 			error_key: false
 		}
 
+	componentDidMount: ->
+		if @props.data 
+			getData(@props.data).then ((rsp) ->
+				$('#company-name').val(rsp['company-name'])
+				$('#company-address').val(rsp['company-address'])
+				$('#company-city').val(rsp['company-city'])
+				$('#company-state').val(rsp['company-state'])
+				$('#company-zip').val(rsp['company-zip'])
+				$('#contact-firstname').val(rsp['contact-firstname'])
+				$('#contact-lastname').val(rsp['contact-lastname'])
+				$('#contact-email').val(rsp['contact-email'])
+				$('#contact-phone').val(rsp['contact-phone'])
+				$('#total-budget').val(rsp['total-budget'])
+				), (err) ->
+					console.log err
+
 	handleSubmit: ->
 		keys = [
 			'total-budget',
@@ -125,9 +143,7 @@ StepOne = React.createClass
 				_this.props.changeStep(2)
 			), (err)->
 				console.log 'error'
-				_this.setState { error_key: err }
-				
-		
+				_this.setState { error_key: err }	
 
 	handleBack: ->
 		@props.changeStep(0)

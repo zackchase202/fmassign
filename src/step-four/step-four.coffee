@@ -14,6 +14,7 @@ ReactDOM = require 'react-dom'
 
 Input = require '../global/input.js'
 
+getData = require '../functions/get-data.js'
 getValues = require '../functions/form-values.js'
 Submit = require('../functions/submit.js').StepFour
 
@@ -94,7 +95,7 @@ StepFour = React.createClass
 						"Please enter your billing info below"
 				div
 					className: 'col-sm-2'
-			React.createElement PaymentForm, {error: @state.error}
+			React.createElement PaymentForm, {error: @state.error, data: @props.data}
 			a
 				className: 'btn btn-primary'
 				onClick: this.handleSubmit

@@ -2,6 +2,8 @@ React = require 'react'
 ReactDOM = require 'react-dom'
 {div,h1,h3,p,a} = React.DOM
 
+RemoveImages = require './functions/remove-img.js'
+
 StepOne = require './step-one/step-one.js'
 StepTwo = require './step-two/step-two.js'
 StepThree = require './step-three/step-three.js'
@@ -26,7 +28,7 @@ Page = React.createClass
 
 	getInitialState: ->
 		{ 
-			screen: 'step-two',
+			screen: 'step-one',
 			data: {
 				stepOne: false,
 				stepTwo: false,
@@ -84,6 +86,14 @@ Page = React.createClass
 		switch step
 			when 0
 				@setState {screen: 'get-started'}
+				@setState { 
+					data: {
+						stepOne: false,
+						stepTwo: false,
+						stepThree: false,
+						stepFour: false
+					}  
+				}
 			when 1
 				@setState {screen: 'step-one'}
 			when 2
@@ -100,13 +110,13 @@ Page = React.createClass
 			when 'get-started'
 				local_comp = React.createElement GetStarted, {handleClick: @onGetStartedPress}
 			when 'step-one'
-				local_comp = React.createElement StepOne, {changeStep: @changeStep, updateData: @updateData}
+				local_comp = React.createElement StepOne, {changeStep: @changeStep, updateData: @updateData, data: @state.data.stepOne}
 			when 'step-two'
-				local_comp = React.createElement StepTwo, {changeStep: @changeStep, updateData: @updateData}
+				local_comp = React.createElement StepTwo, {changeStep: @changeStep, updateData: @updateData, data: @state.data.stepTwo}
 			when 'step-three'
-				local_comp = React.createElement StepThree, {changeStep: @changeStep, data: @state.data.stepTwo, updateData: @updateData}
+				local_comp = React.createElement StepThree, {changeStep: @changeStep, data: @state.data.stepTwo, updateData: @updateData, old_data: @state.data.stepThree}
 			when 'step-four'
-				local_comp = React.createElement StepFour, {changeStep: @changeStep, updateData: @updateData}
+				local_comp = React.createElement StepFour, {changeStep: @changeStep, updateData: @updateData, data: @state.data.stepFour}
 			when 'summary'
 				local_comp = React.createElement Summary, {changeStep: @changeStep, data: @state.data}
 		div

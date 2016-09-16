@@ -26,6 +26,10 @@ app.get '/', (req, res) ->
 app.post '/step-one', (req,res) ->
 	res.send encryptor.encrypt(req.body)
 
+app.post '/get-data', (req,res) ->
+	console.log req.body.key
+	res.send encryptor.decrypt(req.body.key)
+
 app.post '/step-three', (req,res) ->
 	console.log req.body
 	res.send encryptor.encrypt(req.body)

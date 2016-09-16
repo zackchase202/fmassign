@@ -25,7 +25,14 @@ ErrorAlert = React.createClass({
 });
 
 AdTargetInputs = React.createClass({
+  componentDidUpdate: function() {
+    if (this.props.data) {
+      $('#cpm' + String(this.props.count)).val(this.props.data['cpm' + String(this.props.count)]);
+      return $('#max-impressions' + this.props.count).val(this.props.data['maximpressions' + this.props.count]);
+    }
+  },
   render: function() {
+    console.log('more shit render');
     return div({
       className: 'ad-target-input-container'
     }, div({
@@ -48,7 +55,6 @@ AdTargetInputs = React.createClass({
 
 AdTargetComponent = React.createClass({
   render: function() {
-    console.log(this.props);
     return div({
       className: 'row ad-target-component'
     }, div({
@@ -59,6 +65,7 @@ AdTargetComponent = React.createClass({
     })), div({
       className: 'col-sm-10'
     }, React.createElement(AdTargetInputs, {
+      data: this.props.data,
       count: this.props.count,
       error: this.props.error
     })));
@@ -68,8 +75,8 @@ AdTargetComponent = React.createClass({
 AdTargetForm = React.createClass({
   getInitialState: function() {
     return {
-      image_amount: 5,
-      error: false
+      error: false,
+      data: false
     };
   },
   handleSubmit: function() {
@@ -77,7 +84,7 @@ AdTargetForm = React.createClass({
     target_form_keys = ['cpm', 'max-impressions'];
     formValues = {};
     i = 1;
-    while (i <= this.state.image_amount) {
+    while (i <= this.props.data.image_amount) {
       targetValues = {};
       targetValues['cpm' + String(i)] = $('#cpm' + String(i)).val();
       targetValues['maximpressions' + String(i)] = $('#max-impressions' + String(i)).val();
@@ -100,7 +107,6 @@ AdTargetForm = React.createClass({
     return this.props.changeStep(4, formValues);
   },
   render: function() {
-    console.log(this.props.data.images.length);
     return div({
       className: 'container'
     }, (function() {
@@ -109,6 +115,7 @@ AdTargetForm = React.createClass({
           return div({
             className: 'empty'
           }, React.createElement(AdTargetComponent, {
+            data: this.props.old_data.image1,
             error: this.state.error,
             count: 1,
             image: this.props.data.images[0]
@@ -117,10 +124,12 @@ AdTargetForm = React.createClass({
           return div({
             className: 'empty'
           }, React.createElement(AdTargetComponent, {
+            data: this.props.old_data.image1,
             error: this.state.error,
             count: 1,
             image: this.props.data.images[0]
           }), React.createElement(AdTargetComponent, {
+            data: this.props.old_data.image2,
             error: this.state.error,
             count: 2,
             image: this.props.data.images[1]
@@ -129,14 +138,17 @@ AdTargetForm = React.createClass({
           return div({
             className: 'empty'
           }, React.createElement(AdTargetComponent, {
+            data: this.props.old_data.image1,
             error: this.state.error,
             count: 1,
             image: this.props.data.images[0]
           }), React.createElement(AdTargetComponent, {
+            data: this.props.old_data.image2,
             error: this.state.error,
             count: 2,
             image: this.props.data.images[1]
           }), React.createElement(AdTargetComponent, {
+            data: this.props.old_data.image3,
             error: this.state.error,
             count: 3,
             image: this.props.data.images[2]
@@ -145,18 +157,22 @@ AdTargetForm = React.createClass({
           return div({
             className: 'empty'
           }, React.createElement(AdTargetComponent, {
+            data: this.props.old_data.image1,
             error: this.state.error,
             count: 1,
             image: this.props.data.images[0]
           }), React.createElement(AdTargetComponent, {
+            data: this.props.old_data.image2,
             error: this.state.error,
             count: 2,
             image: this.props.data.images[1]
           }), React.createElement(AdTargetComponent, {
+            data: this.props.old_data.image3,
             error: this.state.error,
             count: 3,
             image: this.props.data.images[2]
           }), React.createElement(AdTargetComponent, {
+            data: this.props.old_data.image4,
             error: this.state.error,
             count: 4,
             image: this.props.data.images[3]
@@ -165,22 +181,27 @@ AdTargetForm = React.createClass({
           return div({
             className: 'empty'
           }, React.createElement(AdTargetComponent, {
+            data: this.props.old_data.image1,
             error: this.state.error,
             count: 1,
             image: this.props.data.images[0]
           }), React.createElement(AdTargetComponent, {
+            data: this.props.old_data.image2,
             error: this.state.error,
             count: 2,
             image: this.props.data.images[1]
           }), React.createElement(AdTargetComponent, {
+            data: this.props.old_data.image3,
             error: this.state.error,
             count: 3,
             image: this.props.data.images[2]
           }), React.createElement(AdTargetComponent, {
+            data: this.props.old_data.image4,
             error: this.state.error,
             count: 4,
             image: this.props.data.images[3]
           }), React.createElement(AdTargetComponent, {
+            data: this.props.old_data.image5,
             error: this.state.error,
             count: 5,
             image: this.props.data.images[4]

@@ -10,7 +10,7 @@ StepThree of Sample Workflow
 		extra credit: display the dimensions of the image right next to the thumbnail
 		extra extra credit: dynamicaly resize the image on the server for a smaller thumbnail
  */
-var AdTargetForm, React, ReactDOM, StepThree, Submit, a, div, form, h3, input, label, p, ref;
+var AdTargetForm, GetData, React, ReactDOM, StepThree, Submit, a, div, form, h3, input, label, p, ref;
 
 React = require('react');
 
@@ -22,7 +22,14 @@ AdTargetForm = require('./ad-target-form.js');
 
 Submit = require('../functions/submit.js').StepThree;
 
+GetData = require('../functions/get-data.js');
+
 StepThree = React.createClass({
+  getInitialState: function() {
+    return {
+      data: false
+    };
+  },
   handleBack: function() {
     return this.props.changeStep(2);
   },
@@ -34,7 +41,20 @@ StepThree = React.createClass({
       return _this.props.changeStep(step);
     });
   },
+  componentDidMount: function() {
+    var _this;
+    _this = this;
+    return GetData(this.props.old_data).then(function(rsp) {
+      console.log(rsp);
+      return _this.setState({
+        data: rsp
+      }, function() {
+        return _this.forceUpdate();
+      });
+    });
+  },
   render: function() {
+    console.log('shit is rendering');
     return div({
       className: 'container',
       id: 'step-three-container'
@@ -51,7 +71,8 @@ StepThree = React.createClass({
       className: 'col-sm-2'
     })), React.createElement(AdTargetForm, {
       changeStep: this.submitData,
-      data: this.props.data
+      data: this.props.data,
+      old_data: this.state.data
     }));
   }
 });

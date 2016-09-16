@@ -14,11 +14,13 @@ StepOne of Sample Workflow
 		Total Budget
 User Enters Information, Submits form to server, Moves to StepTwo
  */
-var Budget, CompanyForm, ContactForm, CurrencyInput, ErrorAlert, Input, React, ReactDOM, StepOne, Submit, TotalBudgetErrorAlert, a, div, form, getValues, h3, input, label, p, ref;
+var $, Budget, CompanyForm, ContactForm, CurrencyInput, ErrorAlert, Input, React, ReactDOM, StepOne, Submit, TotalBudgetErrorAlert, a, div, form, getData, getValues, h3, input, label, p, ref;
 
 React = require('react');
 
 ReactDOM = require('react-dom');
+
+$ = require('jquery');
 
 ref = React.DOM, div = ref.div, h3 = ref.h3, p = ref.p, form = ref.form, input = ref.input, label = ref.label, a = ref.a;
 
@@ -27,6 +29,8 @@ Input = require('../global/input.js');
 CurrencyInput = require('../global/currency-input.js');
 
 getValues = require('../functions/form-values.js');
+
+getData = require('../functions/get-data.js');
 
 Submit = require('../functions/submit.js').StepOne;
 
@@ -135,6 +139,24 @@ StepOne = React.createClass({
     return {
       error_key: false
     };
+  },
+  componentDidMount: function() {
+    if (this.props.data) {
+      return getData(this.props.data).then((function(rsp) {
+        $('#company-name').val(rsp['company-name']);
+        $('#company-address').val(rsp['company-address']);
+        $('#company-city').val(rsp['company-city']);
+        $('#company-state').val(rsp['company-state']);
+        $('#company-zip').val(rsp['company-zip']);
+        $('#contact-firstname').val(rsp['contact-firstname']);
+        $('#contact-lastname').val(rsp['contact-lastname']);
+        $('#contact-email').val(rsp['contact-email']);
+        $('#contact-phone').val(rsp['contact-phone']);
+        return $('#total-budget').val(rsp['total-budget']);
+      }), function(err) {
+        return console.log(err);
+      });
+    }
   },
   handleSubmit: function() {
     var _this, keys;

@@ -22,6 +22,9 @@ Summary = React.createClass
 			data: false
 		}
 
+	handleDone: ->
+		@props.changeStep(0)
+
 	handleBack: ->
 		@props.changeStep(4)
 
@@ -53,6 +56,10 @@ Summary = React.createClass
 				div
 					className: 'col-sm-2'
 			React.createElement SummaryData, {data: @state.data}
+			a
+				className: 'btn btn-primary'
+				onClick: this.handleDone
+				'Done'
 
 
 module.exports = Summary

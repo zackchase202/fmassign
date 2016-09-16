@@ -47,6 +47,10 @@ ImageUpload = React.createClass
 			error: false
 		}
 
+	componentDidMount: ->
+		if @props.data
+			@setState {images: @props.data.images}
+
 	deleteImage: (img) ->
 		_this = @
 		RemoveImage(img).then (rsp) ->

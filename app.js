@@ -37,6 +37,11 @@ app.post('/step-one', function(req, res) {
   return res.send(encryptor.encrypt(req.body));
 });
 
+app.post('/get-data', function(req, res) {
+  console.log(req.body.key);
+  return res.send(encryptor.decrypt(req.body.key));
+});
+
 app.post('/step-three', function(req, res) {
   console.log(req.body);
   return res.send(encryptor.encrypt(req.body));

@@ -50,7 +50,7 @@ StepTwo = React.createClass
 						"Upload the images for your ad here. You may upload up to five images"
 				div
 					className: 'col-sm-2'
-			React.createElement ImageUpload, {changeStep: @changeStep}
+			React.createElement ImageUpload, {changeStep: @changeStep, data: @props.data}
 			
 
 
