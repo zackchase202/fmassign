@@ -1,0 +1,244 @@
+/*
+	Main CSS file for Sample Workflow Assignment
+*/
+
+.empty {
+
+}
+
+.text-input-alert {
+	width: 82%;
+    height: 20px;
+    margin: 0px 0px 5px 30px;
+}
+	.text-input-alert p {
+		margin: -10px 0px 0px 0px;
+	}
+
+.total-budget-input-alert {
+	width: 93.2%;
+    height: 20px;
+    margin: 0px 0px 5px 15px;
+}
+	.total-budget-input-alert p {
+		margin: -10px 0px 0px 0px;
+	}
+
+.step-three-input-alert {
+	width: 32%;
+    height: 20px;
+    margin: 0px 0px 5px 15px;
+}
+	.step-three-input-alert p {
+		margin: -10px 0px 0px 0px;
+	}
+
+#get-started-container {
+	text-align: center;
+}
+
+#step-one-container {
+	text-align: center;
+}
+
+#step-two-container {
+	text-align: center;
+}
+	
+	#image-input {
+		margin: -27px 0px 0px -13px;
+	}
+
+	.upload-image-input-container,
+	  .upload-image-input-container input {
+	       height: 33px;
+           width: 121px;
+           float: left;
+           margin: 0px 0px 2px 0px;
+	   }
+
+	   .upload-image-input-container input {
+	       opacity: 0;
+	   }
+
+	.image-view-container {
+		border-style: solid;
+		border-width: 5;
+		height: 290px;
+	}
+
+	.image-view-preview {
+		max-height: 100%;
+		max-width: 100%;
+	}
+
+	.image-view {
+		margin-top: 25px;
+	}
+
+	.delete-img-btn {
+		width: 100%;
+    	margin-top: 3px;
+	}
+
+	.image-submit-btn {
+		float: right;
+		margin: 2px 15px 0px 0px;
+	}
+
+#step-three-container {
+	text-align: center;
+}
+
+	.ad-target-component {
+		border-style: solid;
+	    border-radius: 5px;
+	}
+
+	.target-ad-image {
+		width: 100%;
+	    height: 150px;
+	    margin: 5px 0px 5px 0px;
+	}
+
+	#cpm1 {
+		width: 30%;
+	}
+
+	#max-impressions1 {
+		width: 32%;
+	}
+
+	#cpm2 {
+		width: 30%;
+	}
+
+	#max-impressions2 {
+		width: 32%;
+	}
+
+	#cpm3 {
+		width: 30%;
+	}
+
+	#max-impressions3 {
+		width: 32%;
+	}
+
+	#cpm4 {
+		width: 30%;
+	}
+
+	#max-impressions4 {
+		width: 32%;
+	}
+	#cpm5 {
+		width: 30%;
+	}
+
+	#max-impressions5 {
+		width: 32%;
+	}
+
+	.impression-input-container {
+		margin: 0px 0px 0px -15px;
+	}
+
+#step-four-container {
+	text-align: center;
+}
+
+	#billing-form-container {
+		margin-left: 25%;
+	}
+
+#summary_container {
+	text-align: center;
+}
+
+	.summary-main-title {
+		text-align: center;
+	}
+
+	.summary-info-container {
+		margin-left: 0;
+		width: 100%;
+	}
+
+	#total-budget-summary {
+		border-style: solid;
+	    border-radius: 5px;
+	    width: 100%;
+	}
+
+		.total-budget-text {
+			font-weight: bold;
+			color: green;
+			font-size: 30px;
+			text-align: right;
+    		padding: 0px 25px 0px 0px;
+		}
+
+	#company-info-summary {
+		border-style: solid;
+	    border-radius: 5px;
+	    width: 50%;
+	}
+
+	#contact-info-summary {
+		border-style: solid;
+	    border-radius: 5px;
+	    width: 50%;
+	}
+
+		.summary-comp-title {
+			font-size: 25px;
+    		text-align: center;
+    		font-weight: bold;
+    		border-bottom-style: solid;
+    		margin-bottom: 10px;
+		}
+
+		.ad-target-details {
+			margin-top: 5%;
+		}
+
+		.ad-target-details-text {
+			font-weight: bold;
+			font-size: 14px;
+		}
+
+		.ad-set-title {
+			font-weight: bold;
+    		font-size: 28px;
+		}
+
+	#ad-creative-summary {
+		border-style: solid;
+	    border-radius: 5px;
+	    width: 100%;
+	}
+
+		.ad-target-component-summary {
+			border-style: solid;
+	    	border-radius: 5px;
+			margin: 5px 5px 5px 5px;
+		}
+
+	#billing-info-summary {
+		border-style: solid;
+	    border-radius: 5px;
+	    width: 100%;
+	}
+
+.form-label {
+	float: left;
+}
+
+.step-one-input {
+	width: 40%;
+}
+
+#total-budget {
+	width: 93%;
+}
